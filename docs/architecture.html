@@ -3,189 +3,236 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Greenhouse Platform Architecture</title>
+  <title>Greenhouse Architecture Overview</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="architecture-page">
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="index.html">Greenhouse Architecture Docs</a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="architecture.html" aria-current="page">Architecture</a>
-        <a href="workshop/0-introduction.html">Workshop</a>
-      </nav>
+<body>
+  <header class="hero hero-architecture">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <span class="eyebrow">Reference Architecture</span>
+      <h1>Greenhouse Platform Architecture</h1>
+      <p class="hero-subtitle">
+        A professional reference view of the Greenhouse platform, showing how identity, integration,
+        observability, governance, and workload hosting come together in Azure.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#architecture-diagram">View architecture</a>
+        <a class="button button-secondary" href="#implementation-guidance">Implementation guidance</a>
+      </div>
     </div>
   </header>
 
   <main>
-    <section class="architecture-hero">
-      <div class="container architecture-hero__grid">
+    <section class="section section-intro">
+      <div class="container split-layout">
         <div>
-          <p class="eyebrow">Reference architecture</p>
-          <h1>Designing a resilient greenhouse intelligence platform</h1>
-          <p class="lede">
-            This page summarizes the target architecture for a modern greenhouse platform that combines
-            telemetry, automation, analytics, and AI-assisted operations into a secure, observable,
-            and evolvable system.
+          <span class="section-label">Executive summary</span>
+          <h2>Designed for secure, observable, and scalable delivery</h2>
+          <p>
+            The Greenhouse architecture is organized around a layered Azure design that separates edge,
+            application, data, operations, and governance concerns. This structure helps teams deploy
+            business capabilities with clearer ownership boundaries, stronger security defaults, and a
+            more repeatable operating model.
           </p>
-          <div class="hero-actions">
-            <a class="button button--primary" href="#system-overview">Explore system overview</a>
-            <a class="button button--secondary" href="#design-principles">Review principles</a>
-          </div>
+          <p>
+            The architecture emphasizes enterprise integration, centralized identity, landing zone
+            alignment, and continuous monitoring so that new services can be introduced without
+            weakening platform consistency.
+          </p>
         </div>
-        <aside class="architecture-highlight" aria-label="Architecture highlights">
-          <h2>At a glance</h2>
+        <aside class="info-panel">
+          <h3>Core outcomes</h3>
           <ul>
-            <li>Event-driven ingestion from edge devices and operational systems</li>
-            <li>Clear separation between control-plane, data-plane, and experience layers</li>
-            <li>Operational analytics and AI workflows built on governed data products</li>
-            <li>Security, observability, and reliability designed in from the start</li>
+            <li>Standardized Azure landing zone alignment</li>
+            <li>Centralized identity and access patterns</li>
+            <li>API-first integration through managed gateways</li>
+            <li>Operational visibility with Azure Monitor</li>
+            <li>Governance controls that scale with growth</li>
           </ul>
         </aside>
       </div>
     </section>
 
-    <section class="architecture-summary" aria-labelledby="summary-title">
+    <section id="architecture-diagram" class="section section-surface">
       <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Architecture summary</p>
-          <h2 id="summary-title">Platform capabilities organized by concern</h2>
-        </div>
-        <div class="summary-cards">
-          <article class="summary-card">
-            <h3>Edge and integration</h3>
-            <p>Sensors, controllers, gateways, and line-of-business systems continuously publish operational signals.</p>
+        <span class="section-label">System view</span>
+        <h2>Architecture layers</h2>
+        <div class="architecture-grid">
+          <article class="arch-card">
+            <h3>Experience and access layer</h3>
+            <p>
+              Users, partner systems, and operators enter through controlled endpoints such as web apps,
+              portals, and published APIs. This layer is where traffic is authenticated, routed, and
+              governed before it reaches core platform services.
+            </p>
           </article>
-          <article class="summary-card">
-            <h3>Core platform</h3>
-            <p>Ingestion, orchestration, messaging, storage, and policy services provide a stable backbone for workloads.</p>
+          <article class="arch-card">
+            <h3>Integration and API layer</h3>
+            <p>
+              Azure API Management, messaging patterns, and workflow services provide policy enforcement,
+              service abstraction, and controlled integration between platform capabilities and dependent
+              systems.
+            </p>
           </article>
-          <article class="summary-card">
-            <h3>Intelligence layer</h3>
-            <p>Analytics, simulation, forecasting, and AI copilots transform raw data into decisions and recommended actions.</p>
+          <article class="arch-card">
+            <h3>Application and domain services</h3>
+            <p>
+              Business services run in independently deployable components that align to domain
+              responsibilities. This supports modular delivery, versioned interfaces, and clearer release
+              isolation.
+            </p>
           </article>
-          <article class="summary-card">
-            <h3>User experiences</h3>
-            <p>Dashboards, mobile tools, alerts, and operator workflows expose information in context for each role.</p>
+          <article class="arch-card">
+            <h3>Data and analytics layer</h3>
+            <p>
+              Operational stores, analytics services, and governed data flows support reporting,
+              integration, and decision-making while preserving separation between transactional and
+              analytical workloads.
+            </p>
+          </article>
+          <article class="arch-card">
+            <h3>Operations and monitoring</h3>
+            <p>
+              Telemetry, diagnostics, logging, and alerting are centralized to give engineering and
+              operations teams a consistent view of platform health, performance, and incidents.
+            </p>
+          </article>
+          <article class="arch-card">
+            <h3>Platform governance foundation</h3>
+            <p>
+              Landing zones, policy controls, role-based access, and deployment standards provide the
+              guardrails that keep environments secure, manageable, and compliant over time.
+            </p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="system-overview" class="architecture-section">
+    <section class="section">
       <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">System overview</p>
-          <h2>Layered architecture for greenhouse operations</h2>
+        <span class="section-label">Design principles</span>
+        <h2>What makes this architecture production-ready</h2>
+        <div class="pillar-grid">
+          <article class="pillar-card">
+            <h3>Security by design</h3>
+            <p>
+              Identity is centralized, access is role-based, and platform entry points are governed by
+              managed controls so security policy can be applied consistently across workloads.
+            </p>
+          </article>
+          <article class="pillar-card">
+            <h3>Operational excellence</h3>
+            <p>
+              Monitoring, diagnostics, and repeatable deployment patterns reduce operational drift and
+              improve incident response across application and platform layers.
+            </p>
+          </article>
+          <article class="pillar-card">
+            <h3>Scalability and modularity</h3>
+            <p>
+              Domain-oriented services and decoupled integration patterns help the platform evolve as new
+              capabilities, teams, and traffic profiles are introduced.
+            </p>
+          </article>
+          <article class="pillar-card">
+            <h3>Governance and consistency</h3>
+            <p>
+              Landing zone guidance and standard Azure control planes help teams inherit a common baseline
+              for networking, policy, observability, and environment management.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-surface" id="implementation-guidance">
+      <div class="container">
+        <span class="section-label">Implementation guidance</span>
+        <h2>Recommended Azure architecture references</h2>
+        <p class="section-intro-text">
+          The following Microsoft Learn resources provide authoritative guidance that aligns closely with
+          the Greenhouse platform approach and can be used to deepen implementation detail.
+        </p>
+        <div class="reference-list">
+          <article class="reference-card">
+            <h3>Azure landing zones</h3>
+            <p>
+              Use landing zones to establish subscription design, governance boundaries, policy, network
+              topology, and platform operating models before scaling application workloads.
+            </p>
+            <a href="https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/" target="_blank" rel="noopener noreferrer">Explore Azure landing zones</a>
+          </article>
+          <article class="reference-card">
+            <h3>Azure Well-Architected Framework</h3>
+            <p>
+              Apply Microsoft’s cross-cutting architecture principles to improve reliability, security,
+              operational excellence, performance efficiency, and cost optimization.
+            </p>
+            <a href="https://learn.microsoft.com/azure/well-architected/" target="_blank" rel="noopener noreferrer">Review the Well-Architected Framework</a>
+          </article>
+          <article class="reference-card">
+            <h3>Identity architecture design</h3>
+            <p>
+              Align authentication, authorization, tenant design, and privileged access patterns with a
+              resilient enterprise identity model built on Microsoft Entra guidance.
+            </p>
+            <a href="https://learn.microsoft.com/azure/architecture/guide/design-principles/identity" target="_blank" rel="noopener noreferrer">Read identity architecture guidance</a>
+          </article>
+          <article class="reference-card">
+            <h3>Monitoring system design</h3>
+            <p>
+              Establish platform observability with metrics, logs, traces, alerting, and dashboards that
+              support proactive operations and faster issue triage.
+            </p>
+            <a href="https://learn.microsoft.com/azure/well-architected/operational-excellence/monitoring-analysis" target="_blank" rel="noopener noreferrer">See monitoring design strategies</a>
+          </article>
+          <article class="reference-card">
+            <h3>API Management landing zone architecture</h3>
+            <p>
+              Define how API Management should be deployed with networking, security, and shared platform
+              concerns when APIs are a core entry point for business capabilities.
+            </p>
+            <a href="https://learn.microsoft.com/azure/api-management/architecture-landing-zones" target="_blank" rel="noopener noreferrer">View API Management landing zone guidance</a>
+          </article>
+          <article class="reference-card">
+            <h3>Enterprise integration on Azure</h3>
+            <p>
+              Use Azure integration patterns to connect services, external systems, and workflows while
+              keeping boundaries manageable and interfaces governed.
+            </p>
+            <a href="https://learn.microsoft.com/azure/architecture/reference-architectures/enterprise-integration/basic-enterprise-integration" target="_blank" rel="noopener noreferrer">Review enterprise integration reference architecture</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split-layout">
+        <div>
+          <span class="section-label">Operating model</span>
+          <h2>How teams should use this page</h2>
           <p>
-            The platform should decouple real-time greenhouse control from business applications and advanced
-            intelligence services, enabling each domain to evolve independently while still sharing trusted data.
+            This architecture page should serve as a shared reference for engineering, architecture,
+            security, and delivery teams. It is most effective when paired with environment-specific
+            deployment standards, service ownership definitions, and workload-level decision records.
+          </p>
+          <p>
+            As the platform evolves, update this page to reflect major changes in integration strategy,
+            hosting model, observability tooling, and governance controls so that the document remains a
+            practical reference rather than a static diagram.
           </p>
         </div>
-        <div class="architecture-diagram-frame">
-          <div class="diagram-layer-grid">
-            <article class="diagram-layer">
-              <h3>Experience layer</h3>
-              <p>Operations portal, agronomist workspace, mobile field apps, notifications, and executive reporting.</p>
-            </article>
-            <article class="diagram-layer">
-              <h3>Intelligence layer</h3>
-              <p>Decision support, anomaly detection, demand forecasting, digital twins, and AI-assisted workflows.</p>
-            </article>
-            <article class="diagram-layer">
-              <h3>Platform services layer</h3>
-              <p>API gateway, identity, workflow automation, event routing, telemetry processing, and observability.</p>
-            </article>
-            <article class="diagram-layer">
-              <h3>Data foundation layer</h3>
-              <p>Hot-path operational stores, historical data lakehouse, semantic models, metadata, and governance.</p>
-            </article>
-            <article class="diagram-layer">
-              <h3>Edge and source systems</h3>
-              <p>Climate sensors, irrigation systems, PLCs, cameras, ERP, planning tools, and external market/weather feeds.</p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="design-principles" class="architecture-section architecture-section--alt">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Design principles</p>
-          <h2>What should guide implementation choices</h2>
-        </div>
-        <div class="principles-grid">
-          <article class="principle-card">
-            <h3>Operational safety first</h3>
-            <p>Greenhouse control loops must remain safe and deterministic even when cloud services are degraded.</p>
-          </article>
-          <article class="principle-card">
-            <h3>Loose coupling by default</h3>
-            <p>Use events, APIs, and contract-based integrations so teams can release independently with lower risk.</p>
-          </article>
-          <article class="principle-card">
-            <h3>Data as a product</h3>
-            <p>Create trusted, reusable datasets with clear owners, quality controls, and discoverable semantics.</p>
-          </article>
-          <article class="principle-card">
-            <h3>Progressive intelligence</h3>
-            <p>Start with visibility and recommendations, then automate only where confidence, guardrails, and governance allow.</p>
-          </article>
-          <article class="principle-card">
-            <h3>Secure by design</h3>
-            <p>Apply identity boundaries, least privilege, device trust, auditability, and data protection throughout the stack.</p>
-          </article>
-          <article class="principle-card">
-            <h3>Observable systems</h3>
-            <p>Instrument the platform so teams can detect incidents, trace dependencies, and measure business outcomes.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="architecture-section">
-      <div class="container two-column-layout">
-        <div>
-          <div class="section-heading">
-            <p class="eyebrow">Key flows</p>
-            <h2>Critical information pathways</h2>
-          </div>
-          <ul class="feature-list">
-            <li><strong>Telemetry ingestion:</strong> Environmental and equipment data flows from edge devices into streaming and historical stores.</li>
-            <li><strong>Command and control:</strong> Approved workflows send commands back through governed interfaces with policy checks and audit logs.</li>
-            <li><strong>Decision support:</strong> Models and rules evaluate current conditions to recommend interventions to operators.</li>
-            <li><strong>Business planning:</strong> Production, inventory, and demand signals feed forecasting and planning experiences.</li>
+        <aside class="info-panel emphasis-panel">
+          <h3>Next documentation additions</h3>
+          <ul>
+            <li>Environment topology and network segmentation</li>
+            <li>Identity flows and trust boundaries</li>
+            <li>Service ownership and support model</li>
+            <li>Deployment lifecycle and release controls</li>
+            <li>Resilience and disaster recovery expectations</li>
           </ul>
-        </div>
-        <div>
-          <div class="section-heading">
-            <p class="eyebrow">Cross-cutting concerns</p>
-            <h2>Platform guardrails</h2>
-          </div>
-          <ul class="feature-list">
-            <li>Identity and access management across users, services, and devices</li>
-            <li>End-to-end observability for applications, infrastructure, and greenhouse operations</li>
-            <li>Resilience patterns including retries, buffering, failover, and degraded-mode operation</li>
-            <li>Governance for data retention, lineage, model monitoring, and compliance evidence</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="architecture-section architecture-callout">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Implementation approach</p>
-          <h2>Recommended rollout sequence</h2>
-        </div>
-        <ol class="roadmap-list">
-          <li>Stabilize edge connectivity, telemetry collection, and a minimal operational data model.</li>
-          <li>Introduce shared platform services for integration, security, and observability.</li>
-          <li>Deliver high-value operator dashboards, alerts, and workflow automation.</li>
-          <li>Layer in advanced analytics, simulation, and AI copilots with explicit governance controls.</li>
-        </ol>
+        </aside>
       </div>
     </section>
   </main>
