@@ -6,233 +6,163 @@
   <title>Greenhouse Architecture Overview</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <header class="hero hero-architecture">
-    <div class="hero-overlay"></div>
-    <div class="container hero-content">
-      <span class="eyebrow">Reference Architecture</span>
+<body class="architecture-page">
+  <header class="hero hero--architecture">
+    <div class="hero__content architecture-hero">
+      <p class="eyebrow">Reference Architecture</p>
       <h1>Greenhouse Platform Architecture</h1>
-      <p class="hero-subtitle">
-        A professional reference view of the Greenhouse platform, showing how identity, integration,
-        observability, governance, and workload hosting come together in Azure.
+      <p class="hero__lead">
+        A professional reference view of the Greenhouse solution landscape across channels,
+        integration, identity, operations, and Azure platform services.
       </p>
-      <div class="hero-actions">
-        <a class="button button-primary" href="#architecture-diagram">View architecture</a>
-        <a class="button button-secondary" href="#implementation-guidance">Implementation guidance</a>
+      <div class="hero__actions">
+        <a class="button button--primary" href="README.md">Back to docs</a>
+        <a class="button button--secondary" href="https://learn.microsoft.com/azure/architecture/framework/" target="_blank" rel="noopener noreferrer">Azure Well-Architected Framework</a>
       </div>
     </div>
   </header>
 
-  <main>
-    <section class="section section-intro">
-      <div class="container split-layout">
-        <div>
-          <span class="section-label">Executive summary</span>
-          <h2>Designed for secure, observable, and scalable delivery</h2>
+  <main class="page-shell architecture-shell">
+    <section class="content-panel architecture-summary">
+      <div class="section-heading">
+        <p class="section-heading__eyebrow">Executive summary</p>
+        <h2>Platform intent and design priorities</h2>
+      </div>
+      <div class="architecture-grid architecture-grid--two">
+        <article class="info-card">
+          <h3>Business goal</h3>
           <p>
-            The Greenhouse architecture is organized around a layered Azure design that separates edge,
-            application, data, operations, and governance concerns. This structure helps teams deploy
-            business capabilities with clearer ownership boundaries, stronger security defaults, and a
-            more repeatable operating model.
+            Deliver a scalable greenhouse management platform that supports partner integrations,
+            consistent identity controls, observable operations, and governed deployment patterns.
           </p>
-          <p>
-            The architecture emphasizes enterprise integration, centralized identity, landing zone
-            alignment, and continuous monitoring so that new services can be introduced without
-            weakening platform consistency.
-          </p>
-        </div>
-        <aside class="info-panel">
-          <h3>Core outcomes</h3>
-          <ul>
-            <li>Standardized Azure landing zone alignment</li>
-            <li>Centralized identity and access patterns</li>
-            <li>API-first integration through managed gateways</li>
-            <li>Operational visibility with Azure Monitor</li>
-            <li>Governance controls that scale with growth</li>
+        </article>
+        <article class="info-card">
+          <h3>Architecture priorities</h3>
+          <ul class="feature-list">
+            <li>Secure workload and user access with Microsoft Entra ID.</li>
+            <li>Expose managed APIs through Azure API Management.</li>
+            <li>Centralize telemetry, diagnostics, and alerting in Azure Monitor.</li>
+            <li>Promote reusable, governed platform patterns aligned to landing zones.</li>
           </ul>
-        </aside>
+        </article>
       </div>
     </section>
 
-    <section id="architecture-diagram" class="section section-surface">
-      <div class="container">
-        <span class="section-label">System view</span>
-        <h2>Architecture layers</h2>
-        <div class="architecture-grid">
-          <article class="arch-card">
-            <h3>Experience and access layer</h3>
-            <p>
-              Users, partner systems, and operators enter through controlled endpoints such as web apps,
-              portals, and published APIs. This layer is where traffic is authenticated, routed, and
-              governed before it reaches core platform services.
-            </p>
-          </article>
-          <article class="arch-card">
-            <h3>Integration and API layer</h3>
-            <p>
-              Azure API Management, messaging patterns, and workflow services provide policy enforcement,
-              service abstraction, and controlled integration between platform capabilities and dependent
-              systems.
-            </p>
-          </article>
-          <article class="arch-card">
-            <h3>Application and domain services</h3>
-            <p>
-              Business services run in independently deployable components that align to domain
-              responsibilities. This supports modular delivery, versioned interfaces, and clearer release
-              isolation.
-            </p>
-          </article>
-          <article class="arch-card">
-            <h3>Data and analytics layer</h3>
-            <p>
-              Operational stores, analytics services, and governed data flows support reporting,
-              integration, and decision-making while preserving separation between transactional and
-              analytical workloads.
-            </p>
-          </article>
-          <article class="arch-card">
-            <h3>Operations and monitoring</h3>
-            <p>
-              Telemetry, diagnostics, logging, and alerting are centralized to give engineering and
-              operations teams a consistent view of platform health, performance, and incidents.
-            </p>
-          </article>
-          <article class="arch-card">
-            <h3>Platform governance foundation</h3>
-            <p>
-              Landing zones, policy controls, role-based access, and deployment standards provide the
-              guardrails that keep environments secure, manageable, and compliant over time.
-            </p>
-          </article>
+    <section class="content-panel architecture-diagram-panel">
+      <div class="section-heading">
+        <p class="section-heading__eyebrow">System view</p>
+        <h2>Logical architecture</h2>
+      </div>
+      <div class="architecture-diagram">
+        <div class="architecture-layer">
+          <h3>Experience layer</h3>
+          <div class="architecture-tags">
+            <span class="tag">Web portal</span>
+            <span class="tag">Operations dashboard</span>
+            <span class="tag">Partner-facing experiences</span>
+          </div>
+        </div>
+        <div class="architecture-arrow">↓</div>
+        <div class="architecture-layer">
+          <h3>Application and integration layer</h3>
+          <div class="architecture-tags">
+            <span class="tag">Application services</span>
+            <span class="tag">Azure API Management</span>
+            <span class="tag">Workflow and integration endpoints</span>
+          </div>
+        </div>
+        <div class="architecture-arrow">↓</div>
+        <div class="architecture-layer">
+          <h3>Platform and data layer</h3>
+          <div class="architecture-tags">
+            <span class="tag">Data services</span>
+            <span class="tag">Observability</span>
+            <span class="tag">Identity and governance</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <span class="section-label">Design principles</span>
-        <h2>What makes this architecture production-ready</h2>
-        <div class="pillar-grid">
-          <article class="pillar-card">
-            <h3>Security by design</h3>
-            <p>
-              Identity is centralized, access is role-based, and platform entry points are governed by
-              managed controls so security policy can be applied consistently across workloads.
-            </p>
-          </article>
-          <article class="pillar-card">
-            <h3>Operational excellence</h3>
-            <p>
-              Monitoring, diagnostics, and repeatable deployment patterns reduce operational drift and
-              improve incident response across application and platform layers.
-            </p>
-          </article>
-          <article class="pillar-card">
-            <h3>Scalability and modularity</h3>
-            <p>
-              Domain-oriented services and decoupled integration patterns help the platform evolve as new
-              capabilities, teams, and traffic profiles are introduced.
-            </p>
-          </article>
-          <article class="pillar-card">
-            <h3>Governance and consistency</h3>
-            <p>
-              Landing zone guidance and standard Azure control planes help teams inherit a common baseline
-              for networking, policy, observability, and environment management.
-            </p>
-          </article>
-        </div>
+    <section class="content-panel architecture-capabilities">
+      <div class="section-heading">
+        <p class="section-heading__eyebrow">Core capability areas</p>
+        <h2>How the platform is organized</h2>
       </div>
-    </section>
-
-    <section class="section section-surface" id="implementation-guidance">
-      <div class="container">
-        <span class="section-label">Implementation guidance</span>
-        <h2>Recommended Azure architecture references</h2>
-        <p class="section-intro-text">
-          The following Microsoft Learn resources provide authoritative guidance that aligns closely with
-          the Greenhouse platform approach and can be used to deepen implementation detail.
-        </p>
-        <div class="reference-list">
-          <article class="reference-card">
-            <h3>Azure landing zones</h3>
-            <p>
-              Use landing zones to establish subscription design, governance boundaries, policy, network
-              topology, and platform operating models before scaling application workloads.
-            </p>
-            <a href="https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/" target="_blank" rel="noopener noreferrer">Explore Azure landing zones</a>
-          </article>
-          <article class="reference-card">
-            <h3>Azure Well-Architected Framework</h3>
-            <p>
-              Apply Microsoft’s cross-cutting architecture principles to improve reliability, security,
-              operational excellence, performance efficiency, and cost optimization.
-            </p>
-            <a href="https://learn.microsoft.com/azure/well-architected/" target="_blank" rel="noopener noreferrer">Review the Well-Architected Framework</a>
-          </article>
-          <article class="reference-card">
-            <h3>Identity architecture design</h3>
-            <p>
-              Align authentication, authorization, tenant design, and privileged access patterns with a
-              resilient enterprise identity model built on Microsoft Entra guidance.
-            </p>
-            <a href="https://learn.microsoft.com/azure/architecture/guide/design-principles/identity" target="_blank" rel="noopener noreferrer">Read identity architecture guidance</a>
-          </article>
-          <article class="reference-card">
-            <h3>Monitoring system design</h3>
-            <p>
-              Establish platform observability with metrics, logs, traces, alerting, and dashboards that
-              support proactive operations and faster issue triage.
-            </p>
-            <a href="https://learn.microsoft.com/azure/well-architected/operational-excellence/monitoring-analysis" target="_blank" rel="noopener noreferrer">See monitoring design strategies</a>
-          </article>
-          <article class="reference-card">
-            <h3>API Management landing zone architecture</h3>
-            <p>
-              Define how API Management should be deployed with networking, security, and shared platform
-              concerns when APIs are a core entry point for business capabilities.
-            </p>
-            <a href="https://learn.microsoft.com/azure/api-management/architecture-landing-zones" target="_blank" rel="noopener noreferrer">View API Management landing zone guidance</a>
-          </article>
-          <article class="reference-card">
-            <h3>Enterprise integration on Azure</h3>
-            <p>
-              Use Azure integration patterns to connect services, external systems, and workflows while
-              keeping boundaries manageable and interfaces governed.
-            </p>
-            <a href="https://learn.microsoft.com/azure/architecture/reference-architectures/enterprise-integration/basic-enterprise-integration" target="_blank" rel="noopener noreferrer">Review enterprise integration reference architecture</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container split-layout">
-        <div>
-          <span class="section-label">Operating model</span>
-          <h2>How teams should use this page</h2>
+      <div class="architecture-grid architecture-grid--three">
+        <article class="info-card">
+          <h3>Identity and access</h3>
           <p>
-            This architecture page should serve as a shared reference for engineering, architecture,
-            security, and delivery teams. It is most effective when paired with environment-specific
-            deployment standards, service ownership definitions, and workload-level decision records.
+            Microsoft Entra ID provides centralized authentication, application identity,
+            role-based access patterns, and conditional access guardrails for administrative
+            and external integration scenarios.
           </p>
+          <a class="text-link" href="https://learn.microsoft.com/entra/architecture/" target="_blank" rel="noopener noreferrer">Identity architecture guidance</a>
+        </article>
+        <article class="info-card">
+          <h3>API and integration</h3>
           <p>
-            As the platform evolves, update this page to reflect major changes in integration strategy,
-            hosting model, observability tooling, and governance controls so that the document remains a
-            practical reference rather than a static diagram.
+            Azure API Management sits between client applications and backend services to
+            provide policy enforcement, consistent API exposure, traffic protection, and
+            lifecycle governance for partner-facing and internal integrations.
           </p>
-        </div>
-        <aside class="info-panel emphasis-panel">
-          <h3>Next documentation additions</h3>
-          <ul>
-            <li>Environment topology and network segmentation</li>
-            <li>Identity flows and trust boundaries</li>
-            <li>Service ownership and support model</li>
-            <li>Deployment lifecycle and release controls</li>
-            <li>Resilience and disaster recovery expectations</li>
-          </ul>
-        </aside>
+          <a class="text-link" href="https://learn.microsoft.com/azure/api-management/api-management-landing-zone" target="_blank" rel="noopener noreferrer">API Management landing zone guidance</a>
+        </article>
+        <article class="info-card">
+          <h3>Operations and monitoring</h3>
+          <p>
+            Azure Monitor and related diagnostics patterns support health visibility,
+            performance baselining, alerting, and continuous operational review across
+            platform and workload components.
+          </p>
+          <a class="text-link" href="https://learn.microsoft.com/azure/well-architected/operational-excellence/monitoring-strategy" target="_blank" rel="noopener noreferrer">Monitoring architecture guidance</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-panel architecture-principles">
+      <div class="section-heading">
+        <p class="section-heading__eyebrow">Design principles</p>
+        <h2>Recommended implementation approach</h2>
+      </div>
+      <div class="architecture-grid architecture-grid--two">
+        <article class="info-card info-card--accent">
+          <h3>Govern with landing zones</h3>
+          <p>
+            Organize the platform into governed environments that separate foundational platform
+            services from application workloads and align subscriptions, policies, and networking
+            with enterprise-scale operating models.
+          </p>
+          <a class="text-link" href="https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/" target="_blank" rel="noopener noreferrer">Azure landing zones</a>
+        </article>
+        <article class="info-card info-card--accent">
+          <h3>Build with Well-Architected tradeoffs</h3>
+          <p>
+            Balance reliability, security, cost, performance efficiency, and operational excellence
+            decisions as the platform evolves from documentation into implementation.
+          </p>
+          <a class="text-link" href="https://learn.microsoft.com/azure/architecture/framework/" target="_blank" rel="noopener noreferrer">Well-Architected guidance</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-panel architecture-next-steps">
+      <div class="section-heading">
+        <p class="section-heading__eyebrow">Next steps</p>
+        <h2>Recommended follow-up work</h2>
+      </div>
+      <div class="architecture-grid architecture-grid--three">
+        <article class="info-card">
+          <h3>Document target workloads</h3>
+          <p>Map each greenhouse capability to concrete application services, data stores, and ownership boundaries.</p>
+        </article>
+        <article class="info-card">
+          <h3>Define operating model</h3>
+          <p>Clarify deployment, environment separation, monitoring ownership, and incident response responsibilities.</p>
+        </article>
+        <article class="info-card">
+          <h3>Extend reference links</h3>
+          <p>Add implementation-specific links for networking, security baselines, and integration patterns as the design matures.</p>
+        </article>
       </div>
     </section>
   </main>
